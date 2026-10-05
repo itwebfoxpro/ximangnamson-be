@@ -29,7 +29,7 @@ exports.getMonthlyProfit = async (req, res, next) => {
 
 exports.getPaymentSummary = async (req, res, next) => {
   try {
-    const data = await dashboardService.getPaymentTotal(req.user);
+    const data = await dashboardService.getPaymentTotal(req.user, req.query);
 
     console.log("===== TỔNG THANH TOÁN =====");
     console.log("Đã thanh toán:", data.da_thanh_toan);
@@ -62,7 +62,7 @@ exports.getAll = async (req, res, next) => {
   try {
     console.log("CONTROLLER req.user =", req.user); // debug
 
-    const data = await dashboardService.getAll(req.user); // 🔥 BẮT BUỘC
+    const data = await dashboardService.getAll(req.user, req.query);
     res.json(data);
   } catch (err) {
     next(err);
