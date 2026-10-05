@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "XI MĂNG VICEM HÀ TIÊN",
+    "description": "Phù hợp cho bê tông và vữa xây dựng dân dụng.",
+    "price": 92000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/vicem-hatien.png"
+  },
+  {
+    "id": 2,
+    "name": "XI MĂNG HÀ TIÊN XÂY TÔ",
+    "description": "Chuyên dụng cho công tác xây, tô trát tường, bề mặt mịn.",
+    "price": 88000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/hatien-xayto.png"
+  },
+  {
+    "id": 3,
+    "name": "XI MĂNG HÀ TIÊN 2",
+    "description": "Cường độ cao, thích hợp cho móng, dầm và sàn.",
+    "price": 105000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/hatien2.png"
+  },
+  {
+    "id": 4,
+    "name": "XI MĂNG HÀ TIÊN ĐA DỤNG",
+    "description": "Đa ứng dụng, dùng cho nhiều loại công trình xây dựng.",
+    "price": 98000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/hatien-dadung.png"
+  },
+  {
+    "id": 5,
+    "name": "XI MĂNG BÌNH DƯƠNG",
+    "description": "Xi măng chất lượng cao, phù hợp xây dựng dân dụng.",
+    "price": 90000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/binhduong.png"
+  },
+  {
+    "id": 6,
+    "name": "XI MĂNG HÀ TIÊN MĐ",
+    "description": "Loại xi măng có độ bền cao và ổn định.",
+    "price": 95000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/hatien-md.png"
+  },
+  {
+    "id": 7,
+    "name": "XI MĂNG STARMAX",
+    "description": "Công nghệ hiện đại, độ kết dính cao, bền vững.",
+    "price": 89000,
+    "unit": "bao 50kg",
+    "image_url": "/images/products/starmax.png"
+  }
+]
