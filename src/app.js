@@ -35,6 +35,7 @@ const whitelist = new Set([
   "https://www.ximangnamson.com",
   "https://namsonjsc.vn",
   "https://www.namsonjsc.vn",
+  "https://test.namsonjsc.vn",
   "http://192.168.1.18:3000",
 ]);
 
