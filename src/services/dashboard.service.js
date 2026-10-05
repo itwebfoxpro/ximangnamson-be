@@ -1,6 +1,22 @@
 const { Dashboard, Category } = require("../../models");
 const { Op, fn, col, literal } = require("sequelize");
 
+function getPeriodRange(period = "month", month, quarter, year) {
+  const now = new Date();
+  const y = Number(year) || now.getFullYear();
+  const m = Number(month) || now.getMonth() + 1;
+  const q = Number(quarter) || Math.floor((m - 1) / 3) + 1;
+
+  if (period === "year") {
+    return [new Date(y, 0, 1, 0, 0, 0), new Date(y, 11, 31, 23, 59, 59, 999)];
+  }
+  if (period === "quarter") {
+    const startMonth = (q - 1) * 3;
+    return [new Date(y, startMonth, 1, 0, 0, 0), new Date(y, startMonth + 3, 0, 23, 59, 59, 999)];
+  }
+  return [new Date(y, m - 1, 1, 0, 0, 0), new Date(y, m, 0, 23, 59, 59, 999)];
+}
+
 module.exports = {
   // TÍNH TỔNG ĐÃ THANH TOÁN & CHƯA THANH TOÁN
 
@@ -19,6 +35,7 @@ module.exports = {
       where: {
         owner: authUser.username,
         paid: true,
+        created_at: { [Op.between]: [startDate, endDate] },
         created_at: {
           [Op.between]: [
             new Date(year, month - 1, 1),
@@ -67,7 +84,8 @@ module.exports = {
     });
   },  
 
-  async getPaymentTotal(authUser) {
+  async getPaymentTotal(authUser, filters = {}) {
+    const [startDate, endDate] = getPeriodRange(filters.period, filters.month, filters.quarter, filters.year);
     const paidTotalRow = await Dashboard.findOne({
       attributes: [[fn("SUM", literal("price * quantity")), "total"]],
       where: {
@@ -82,6 +100,7 @@ module.exports = {
       where: {
         owner: authUser.username,
         paid: false,
+        created_at: { [Op.between]: [startDate, endDate] },
       },
       raw: true,
     });
@@ -145,11 +164,14 @@ module.exports = {
   },
 
   // GET ALL
-  async getAll(authUser) {
-    console.log("SERVICE authUser =", authUser); // 👈 LOG 5
+  async getAll(authUser, filters = {}) {
+    const [startDate, endDate] = getPeriodRange(filters.period, filters.month, filters.quarter, filters.year);
 
     return Dashboard.findAll({
-      where: { owner: authUser.username },
+      where: {
+        owner: authUser.username,
+        created_at: { [Op.between]: [startDate, endDate] },
+      },
       include: [
         {
           model: Category,
